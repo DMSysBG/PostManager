@@ -1,0 +1,38 @@
+﻿@model List<PostManager.Models.ExceptionModel>
+@{
+    ViewBag.Title = "SysExceptions";
+}
+
+<h2>Sys Exceptions</h2>
+<div class="table-responsive">
+    @{
+        var grid = new WebGrid(Model, rowsPerPage: 20);
+    }
+    @grid.GetHtml(
+        columns: grid.Columns(
+            grid.Column(format: @<div class="row-menu"><button onclick="deleteSysException(@item.ExId)">Изтрий</button></div>),
+            grid.Column("ExId", "ID"),
+            grid.Column("ExDate", "Date", format: (item) => string.Format("{0:dd.MM.yyyy}", item.ExDate)),
+            grid.Column("ExMessage", "Message"),
+            grid.Column("StackTrace", "Stack Trace"),
+            grid.Column("PostLink", "Post Link", format: @<a href="@item.PostLink" target="_blank">@item.PostLink</a>),
+            grid.Column("SourceId", "SourceId")
+            )
+        )
+</div>
+<script>
+    function deleteSysException(itemId) {
+        if (confirm('Искате ли да бъде изтрит?')) {
+            $.post("/Home/DeleteSysException", { id: itemId })
+            .done(function (jsonData) {
+                if(jsonData.Status == 0)
+                { location.reload(); }
+                else
+                { alert(jsonData.Message); }
+            })
+            .fail(function () {
+                alert("error");
+            });
+        }
+    }
+</script>

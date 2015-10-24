@@ -16,3 +16,29 @@ textarea {
     max-width: 280px;
 }
 
+/* Table Responsive*/
+.table-responsive table,
+.table-responsive td,
+.table-responsive th {
+    border: 1px solid #222222;
+    border-collapse: collapse;
+    padding: 0px 5px;
+}
+
+.table-responsive th,
+.table-responsive th a {
+    background-color: #222222;
+    color: white;
+}
+
+.table-responsive tbody tr:hover {
+    background-color: #EBEBEB;
+}
+
+.table-responsive .row-menu {
+}
+    .table-responsive .row-menu button {
+        border: none;
+        background: none;
+        color: #4A8CF7;
+    }
