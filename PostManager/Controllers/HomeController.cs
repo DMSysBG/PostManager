@@ -50,5 +50,16 @@ namespace PostManager.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        // GET: Home/InvalidPost
+        public ActionResult InvalidPost()
+        {
+            List<Models.ExceptionModel> model = null;
+            using (Contexts.HomeContext context = new Contexts.HomeContext())
+            {
+                model = context.GetInvalidPost();
+            }
+            return View(model);
+        }
     }
 }

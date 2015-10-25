@@ -1,0 +1,84 @@
+﻿@model PostManager.Models.PostModel
+@{
+    ViewBag.Title = "Edit";
+}
+<script>
+    $(function () {
+        $("#PostDate").datepicker({
+            dateFormat: "dd.mm.yy"
+        });
+    });
+</script>
+<div class="row-fluid">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(m => m.PostId)
+        <div class="col-md-6 form-horizontal">
+            <div class="form-group form-group-sm">
+                @Html.LabelFor(m => m.PostTitle, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.PostTitle, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.PostTitle)
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                @Html.LabelFor(m => m.PostLink, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.PostLink, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.PostLink)
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                @Html.LabelFor(m => m.PostImage, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.PostImage, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.PostImage)
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                @Html.LabelFor(m => m.PostDate, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.PostDate, Html.ToDisplayDateTime(Model.PostDate),
+                            new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.PostDate)
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                @Html.LabelFor(m => m.PostPriceTypeId, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-9">
+                    @Html.DropDownListFor(m => m.PostPriceTypeId,
+                        new SelectList(ViewBag.PostPriceTypes, "id", "label", Model.PostPriceTypeId),
+                            new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.PostPriceTypeId)
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                @Html.LabelFor(m => m.PostPrice, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.PostPrice, Html.ToDisplayDecimal(Model.PostPrice),
+                                                new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.PostPrice)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 form-horizontal">
+            <div id="groupDiscounts"></div>
+            <div class="form-group form-group-sm">
+                @Html.LabelFor(m => m.PostText, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-9">
+                    @Html.TextAreaFor(m => m.PostText, new { @class = "form-control", @rows = 10 })
+                    @Html.ValidationMessageFor(m => m.PostText)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-6 col-sm-6" style="text-align: right;">
+                <button type="submit" class="btn btn-primary">Запис</button>
+                <a href="~/Home/InvalidPost" class="btn btn-default">Отказ</a>
+            </div>
+        </div>
+    }
+</div>

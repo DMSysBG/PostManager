@@ -83,23 +83,56 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="Scripts\Bootstrap\css\bootstrap.css.map" />
+    <Content Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Scripts\Bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Scripts\Bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Scripts\Bootstrap\css\bootstrap.css" />
+    <Content Include="Scripts\Bootstrap\css\bootstrap.min.css" />
+    <Content Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\Bootstrap\js\bootstrap.js" />
+    <Content Include="Scripts\Bootstrap\js\bootstrap.min.js" />
+    <Content Include="Scripts\Bootstrap\js\npm.js" />
+    <Content Include="Scripts\jQuery\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\external\jquery\jquery.js" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\images\ui-icons_454545_256x240.png" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\images\ui-icons_888888_256x240.png" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\index.html" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\jquery-ui.css" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\jquery-ui.js" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\jquery-ui.min.css" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\jquery-ui.min.js" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\jquery-ui.structure.css" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\jquery-ui.structure.min.css" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\jquery-ui.theme.css" />
+    <Content Include="Scripts\jQuery\ui-1.11.4\jquery-ui.theme.min.css" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\script.js" />
     <Content Include="Web.config" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Contexts\HomeContext.cs" />
+    <Compile Include="Contexts\PostContext.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -107,6 +140,8 @@
     <Compile Include="Helpers\AppHelper.cs" />
     <Compile Include="Models\ExceptionModel.cs" />
     <Compile Include="Models\JsonResponseModel.cs" />
+    <Compile Include="Models\ListItemModel.cs" />
+    <Compile Include="Models\PostModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="xConfig.cs" />
   </ItemGroup>
@@ -120,6 +155,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Views\Home\SysExceptions.cshtml" />
+    <Content Include="Views\Home\InvalidPost.cshtml" />
+    <Content Include="Views\Post\Index.cshtml" />
+    <Content Include="Views\Post\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,21 @@
+﻿@model List<PostManager.Models.ExceptionModel>
+@{
+    ViewBag.Title = "Невалидни постове";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="table-responsive">
+    @{
+        var grid = new WebGrid(Model, rowsPerPage: 20);
+    }
+    @grid.GetHtml(
+        columns: grid.Columns(
+            grid.Column("", "", format: @<a href="~/Post/Edit/@item.ExId?redirectUrl=~/Home/InvalidPost">Публикация</a>),
+            grid.Column("ExId", "ID"),
+            grid.Column("ExDate", "Date", format: (item) => string.Format("{0:dd.MM.yyyy}", item.ExDate)),
+            grid.Column("ExMessage", "Message"),
+            grid.Column("PostLink", "Post Link", format: @<a href="@item.PostLink" target="_blank">@item.PostLink</a>),
+            grid.Column("SourceId", "SiteId")
+            )
+        )
+</div>

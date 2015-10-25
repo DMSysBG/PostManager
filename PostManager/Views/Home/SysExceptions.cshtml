@@ -1,9 +1,9 @@
 ﻿@model List<PostManager.Models.ExceptionModel>
 @{
-    ViewBag.Title = "SysExceptions";
+    ViewBag.Title = "Системни грешки";
 }
 
-<h2>Sys Exceptions</h2>
+<h2>@ViewBag.Title</h2>
 <div class="table-responsive">
     @{
         var grid = new WebGrid(Model, rowsPerPage: 20);

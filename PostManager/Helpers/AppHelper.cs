@@ -13,6 +13,16 @@ namespace PostManager.Helpers
             return (value == null) ? "" : ((DateTime)value).ToString("dd.MM.yyyy");
         }
 
+        public static string ToDisplayDateTime(this HtmlHelper htmlHelper, DateTime? value)
+        {
+            return (value == null) ? "" : ((DateTime)value).ToString("dd.MM.yyyy HH:mm");
+        }
+
+        public static string ToDisplayDateTime2(this HtmlHelper htmlHelper, DateTime? value)
+        {
+            return (value == null) ? "" : ((DateTime)value).ToString("dd.MM.yyyy HH:mm:ss");
+        }
+
         public static string ToDisplayDecimal(this HtmlHelper htmlHelper, decimal? value)
         {
             return (value == null) ? "" : ((decimal)value).ToString("#0.00");
