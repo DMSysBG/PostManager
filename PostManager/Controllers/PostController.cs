@@ -43,7 +43,7 @@ namespace PostManager.Controllers
             {
                 using (Contexts.PostContext context = new Contexts.PostContext())
                 {
-                    // context.Edit(model);
+                    context.Edit(model);
                 }
                 return Redirect(redirectUrl);
             }

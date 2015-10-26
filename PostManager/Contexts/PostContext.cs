@@ -92,15 +92,16 @@ namespace PostManager.Contexts
         {
             string commandText =
 @"UPDATE post
-     SET post_link
-       , post_image
-       , post_title
-       , post_text
-       , post_price
-       , post_date " + SQLDateTime(model.PostDate) + @"
-       , n_site_posted_id
-       , post_price_type_id
+     SET post_link = " + SQLString(model.PostLink) + @"
+       , post_image = " + SQLString(model.PostImage) + @"
+       , post_title = " + SQLString(model.PostTitle) + @"
+       , post_text = " + SQLString(model.PostText) + @"
+       , post_price = " + SQLDecimal(model.PostPrice) + @"
+       , post_date = " + SQLDateTime(model.PostDate) + @"
+       , post_price_type_id = " + SQLInt(model.PostPriceTypeId) + @"
  WHERE id = " + SQLInt(model.PostId);
+
+            base.ExecuteNonQuery(commandText);
         }
     }
 }
