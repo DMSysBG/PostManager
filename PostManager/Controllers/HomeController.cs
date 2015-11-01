@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Post.Models;
 
 namespace PostManager.Controllers
 {
@@ -35,7 +36,7 @@ namespace PostManager.Controllers
                 {
                     context.DeleteSysException(id);
                 }
-                return Json(new Models.JsonResponseModel()
+                return Json(new JsonResponseModel()
                 {
                     Status = 0,
                     Message = "Успешно изтриване."
@@ -43,7 +44,7 @@ namespace PostManager.Controllers
             }
             catch (Exception ex)
             {
-                return Json(new Models.JsonResponseModel()
+                return Json(new JsonResponseModel()
                 {
                     Status = 1,
                     Message = ex.Message

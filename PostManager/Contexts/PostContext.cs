@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using DMSys.Systems;
+using Post.Models;
 
 namespace PostManager.Contexts
 {
@@ -13,7 +14,7 @@ namespace PostManager.Contexts
             : base(xConfig.ConnectionString)
         { }
 
-        public Models.PostModel GetPost(int id)
+        public PostModel GetPost(int id)
         {
             string commandText =
 @"SELECT p.id
@@ -32,26 +33,26 @@ namespace PostManager.Contexts
        , p.post_price_type_id
  FROM post p
  WHERE p.id = " + SQLInt(id);
-            Models.PostModel model = null;
+            PostModel model = null;
             using (DataTable dTable = base.FillDataTable(commandText))
             {
                 if( dTable.Rows.Count > 0)
                 {
                     DataRow dRow = dTable.Rows[0];
-                    model = new Models.PostModel()
+                    model = new PostModel()
                     {
                         PostId = TryParse.ToInt32(dRow["id"]),
                         SiteId = TryParse.ToInt32(dRow["n_site_id"]),
                         CategoryId = TryParse.ToInt32(dRow["n_category_id"]),
-                        PostLink = TryParse.ToString(dRow["post_link"]),
-                        PostImage = TryParse.ToString(dRow["post_image"]),
-                        PostTitle = TryParse.ToString(dRow["post_title"]),
-                        PostText = TryParse.ToString(dRow["post_text"]),
-                        PostPrice = TryParse.ToDecimal(dRow["post_price"]),
+                        PLink = TryParse.ToString(dRow["post_link"]),
+                        PImage = TryParse.ToString(dRow["post_image"]),
+                        PTitle = TryParse.ToString(dRow["post_title"]),
+                        PText = TryParse.ToString(dRow["post_text"]),
+                        PPrice = TryParse.ToDecimal(dRow["post_price"]),
                         TemplateLocationId = TryParse.ToInt32(dRow["n_template_location_id"]),
-                        PostDate = TryParse.ToDateTime(dRow["post_date"]),
+                        PDate = TryParse.ToDateTime(dRow["post_date"]),
                         SitePostedId = TryParse.ToInt32(dRow["n_site_posted_id"]),
-                        PostPriceTypeId = TryParse.ToInt32(dRow["post_price_type_id"])
+                        PPriceTypeId = TryParse.ToInt32(dRow["post_price_type_id"])
                     };
                 }
             }
@@ -61,9 +62,9 @@ namespace PostManager.Contexts
         /// <summary>
         /// Типове цени
         /// </summary>
-        public List<Models.ListItemModel> GetPostPriceTypes(bool withUndefined = false)
+        public List<ListItemModel> GetPostPriceTypes(bool withUndefined = false)
         {
-            List<Models.ListItemModel> model = new List<Models.ListItemModel>();
+            List<ListItemModel> model = new List<ListItemModel>();
             string commandText =
 @"SELECT ppt.id, ppt.pt_name
  FROM post_price_type ppt
@@ -71,13 +72,13 @@ namespace PostManager.Contexts
 
             if (withUndefined)
             {
-                model.Add(new Models.ListItemModel() { id = "0", label = "-", abbrev = "" });
+                model.Add(new ListItemModel() { id = "0", label = "-", abbrev = "" });
             }
             using (DataTable dtDiscounts = FillDataTable(commandText))
             {
                 foreach (DataRow drDiscount in dtDiscounts.Rows)
                 {
-                    model.Add(new Models.ListItemModel()
+                    model.Add(new ListItemModel()
                     {
                         id = TryParse.ToString(drDiscount["id"]),
                         label = TryParse.ToString(drDiscount["pt_name"]),
@@ -88,17 +89,17 @@ namespace PostManager.Contexts
             return model;
         }
 
-        public void Edit(Models.PostModel model)
+        public void Edit(PostModel model)
         {
             string commandText =
 @"UPDATE post
-     SET post_link = " + SQLString(model.PostLink) + @"
-       , post_image = " + SQLString(model.PostImage) + @"
-       , post_title = " + SQLString(model.PostTitle) + @"
-       , post_text = " + SQLString(model.PostText) + @"
-       , post_price = " + SQLDecimal(model.PostPrice) + @"
-       , post_date = " + SQLDateTime(model.PostDate) + @"
-       , post_price_type_id = " + SQLInt(model.PostPriceTypeId) + @"
+     SET post_link = " + SQLString(model.PLink) + @"
+       , post_image = " + SQLString(model.PImage) + @"
+       , post_title = " + SQLString(model.PTitle) + @"
+       , post_text = " + SQLString(model.PText) + @"
+       , post_price = " + SQLDecimal(model.PPrice) + @"
+       , post_date = " + SQLDateTime(model.PDate) + @"
+       , post_price_type_id = " + SQLInt(model.PPriceTypeId) + @"
  WHERE id = " + SQLInt(model.PostId);
 
             base.ExecuteNonQuery(commandText);

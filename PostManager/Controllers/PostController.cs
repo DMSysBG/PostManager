@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Post.Models;
 
 namespace PostManager.Controllers
 {
@@ -18,7 +19,7 @@ namespace PostManager.Controllers
         [HttpGet]
         public ActionResult Edit(int id = 0, string redirectUrl = "")
         {
-            Models.PostModel model = null;
+            PostModel model = null;
             using (Contexts.PostContext context = new Contexts.PostContext())
             {
                 model = context.GetPost(id);
@@ -29,7 +30,7 @@ namespace PostManager.Controllers
 
         // GET: Post/Edit/Id
         [HttpPost]
-        public ActionResult Edit(Models.PostModel model, string redirectUrl = "")
+        public ActionResult Edit(PostModel model, string redirectUrl = "")
         {
             if (!ModelState.IsValid)
             {
